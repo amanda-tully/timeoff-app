@@ -82,7 +82,10 @@ Noticed that ionic uses slots in a similar way to Vue. Ion has css utility class
 
 ## Create wireframes
 Thursday 15:45 - 16:45
-Created the wireframes. I was going back and forth about how to handle approving/denying a request. 
+
+<img width="1472" height="993" alt="Screenshot 2025-10-16 at 16 43 49" src="https://github.com/user-attachments/assets/6e03d3d9-7b96-4acc-b92c-554d0fa1b95c" />
+
+I was going back and forth about how to handle approving/denying a request. 
 My ideas were either a detail page per request or a modal. I've settled on using a modal, there isn't a lot of 
 information to display and this way the user doesn't have to navigate back and forth.
 These are questions I would ask the product owner:  
@@ -91,5 +94,7 @@ These are questions I would ask the product owner:
 * In what order should the pending list for the supervisor be displayed? 
 * Should we add a search and/or filter to either list?
 * Is there a max amount of characters for the notes?
+
+
 
 

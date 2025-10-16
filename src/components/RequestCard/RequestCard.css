@@ -1,0 +1,5 @@
+.request-card .header-row{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.request-card .notes{margin-top:.25rem;color:var(--ion-color-medium)}
+.request-card .decision-note{margin-top:.25rem;color:var(--ion-color-medium)}
+.request-card .actions{margin-top:.5rem;display:flex;flex-direction:column;gap:.5rem}
+.request-card .note-item{--inner-padding-end:0}

@@ -13,9 +13,12 @@
 [ ] Write unit test for card component <br>
 [ ] Add pagination component and link to storybook <br>
 [ ] Add pagination unit test <br>
+[ ] Add list component and link to storybook <br>
+[ ] Add list unit test <br>
 [x] Add navigation <br>
 [x] Add user switch toggle <br>
 [ ] Add components to pages <br>
+[ ] Write business logic for time off requests and approvals <br>
 [ ] Update theme <br>
 [ ] Add integration tests <br>
 [ ] Write readme
@@ -45,16 +48,16 @@ Thinking about it more, a supervisor could have a supervisor and would need to b
 So in case this is true, I need this user type to have access to both views.
 ```aiignore
 person1 = {
-    id: 1
+    id: 1,
     name: Emma,
-    supervisorId: 3
+    supervisorId: 3,
     employeesToSupervise: [] 
 }
 
 person2 =  {
-    id: 2
+    id: 2,
     name: Bob,
-    supervisorId: 3
+    supervisorId: 3,
     employeesToSupervise: [] 
 }
 

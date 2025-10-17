@@ -12,7 +12,7 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { people, personCircle, settings } from "ionicons/icons";
+import { people, alarm, clipboard } from "ionicons/icons";
 import EmployeePage from "./pages/EmployeePage";
 import SupervisorPage from "./pages/SupervisorPage";
 import { User, UserProvider, useUser } from "./context/UserContext";
@@ -83,14 +83,14 @@ const AppInner: React.FC = () => {
       <IonTabBar slot="bottom">
         {hasRequestView && (
           <IonTabButton tab="employee" href="/employee">
-            <IonIcon aria-hidden="true" icon={personCircle} />
-            <IonLabel>Employee</IonLabel>
+            <IonIcon aria-hidden="true" icon={alarm} />
+            <IonLabel>Requests</IonLabel>
           </IonTabButton>
         )}
         {hasResponseView && (
           <IonTabButton tab="supervisor" href="/supervisor">
-            <IonIcon aria-hidden="true" icon={people} />
-            <IonLabel>Supervisor</IonLabel>
+            <IonIcon aria-hidden="true" icon={clipboard} />
+            <IonLabel>Responses</IonLabel>
           </IonTabButton>
         )}
 
@@ -102,7 +102,7 @@ const AppInner: React.FC = () => {
             setShowSheet(true);
           }}
         >
-          <IonIcon aria-hidden="true" icon={settings} />
+          <IonIcon aria-hidden="true" icon={people} />
           <IonLabel>Switch user</IonLabel>
         </IonTabButton>
       </IonTabBar>

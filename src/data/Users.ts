@@ -15,12 +15,11 @@ export const users = [
   },
   {
     id: "3",
-    name: "Anna",
+    name: "Kate",
     supervisorId: "4",
     employeesToSupervise: ["1", "2"],
     availableViews: ["request", "response"],
   },
-
   {
     id: "4",
     name: "Frank",

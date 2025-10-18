@@ -16,9 +16,10 @@ describe("FormCard", () => {
 
   test("disables submit button when form is invalid", () => {
     render(<FormCard {...defaultProps} />);
-    const submitBtn = screen.getByText(/submit/i).closest("ion-button");
-    fireEvent.click(submitBtn!);
+    const submitBtn = screen.getByRole("button", { name: /submit/i });
+    fireEvent.click(submitBtn);
     expect(mockOnSubmit).not.toHaveBeenCalled();
+    expect(submitBtn).toBeDisabled();
   });
 
   test("enables submit button when form is valid and fires event", () => {

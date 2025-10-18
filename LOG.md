@@ -24,7 +24,6 @@
 [x] Add integration tests <br>
 [x] Write readme
 
-
 ## Understanding brief
 Thursday 11:00 - 11:20.  <br>
 I will focus first on building the UI components that ionic doesn't have. I want to keep state and other business logic out of my UI components. 
@@ -202,8 +201,9 @@ The supervisor page was getting a bit bloated so I moved code to components.
 ## RequestList component
 [x] Add some sort of visual to indicate current status of request
 
-
 ## Testing
+[x] Check phone
+[x] Check iPad
 [x] Check storybook 
 [x] Make sure all the tests are passing
 

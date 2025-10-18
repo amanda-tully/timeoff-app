@@ -12,8 +12,8 @@
 [x] Add card component <br>
 [x] Add card component to storybook <br>
 [x] Write unit test for card component <br>
-[ ] Add pagination component and link to storybook <br>
-[ ] Add pagination unit test <br>
+[x] Add pagination component and link to storybook <br>
+[x] Add pagination unit test <br>
 [x] Add list component and link to storybook <br>
 [x] Add list unit test <br>
 [x] Add navigation <br>
@@ -22,7 +22,7 @@
 [x] Write business logic for time off requests and approvals <br>
 [x] Update theme <br>
 [ ] Add integration tests <br>
-[ ] Write readme
+[x] Write readme
 
 
 ## Understanding brief
@@ -158,3 +158,26 @@ Worked on the unit tests some more. Found a better way to handle the buttons. Ad
 Worked some more on the Pagination.
 [x] Update list UI
 [x] Remove request once approved or rejected and add it to history list for supervisor
+[x] Move switching user to header
+
+
+## Note to self
+When checking vercel and downloading the app to the phone I noted there is a startup screen.
+If I have time today I want to figure out how to change the image there.
+
+## Pagination component
+Saturday 13:15-14:00 <br>
+Finished building the pagination including test and storybook.
+
+## Readme
+Saturday 14:00-14:10 <br>
+Write readme page.
+
+## Add cypress setup
+Saturday 14:00-14:30 <br>
+Started on the cypress configuration and some basic tests. 
+Testing config is usually where I get stuck so I wanted to make sure I could make it work. 
+Luckily the setup was really simple and the tests are running. Next step is to update the code so the tests are not failing.
+I need to make the Supervisor response modal. I am also thinking that the pending requests should be an infinite scroll and 
+not paginated, I saw that Ionic has something for that.
+

@@ -36,3 +36,4 @@ storybook-static
 .idea
 android
 ios
+cypress/screenshots

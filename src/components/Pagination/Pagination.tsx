@@ -1,5 +1,6 @@
 import { IonButton, IonIcon } from "@ionic/react";
 import { chevronBack, chevronForward } from "ionicons/icons";
+import "./Pagination.css";
 
 interface PaginationProps {
   currentPage: number;
@@ -47,17 +48,11 @@ export function Pagination({
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 8,
-        justifyContent: "center",
-        margin: "1em 0",
-      }}
-    >
+    <div className="pagination-container">
       <IonButton
+        className="pagination-arrow"
         size="small"
+        fill="clear"
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
         aria-label="Previous Page"
@@ -68,8 +63,13 @@ export function Pagination({
         typeof page === "number" ? (
           <IonButton
             key={page}
+            className={
+              page === currentPage
+                ? "pagination-number pagination-number-active"
+                : "pagination-number"
+            }
             size="small"
-            fill={page === currentPage ? "solid" : "outline"}
+            fill="clear"
             onClick={() => onPageChange(page)}
             disabled={page === currentPage}
             aria-current={page === currentPage ? "page" : undefined}
@@ -77,13 +77,15 @@ export function Pagination({
             {page}
           </IonButton>
         ) : (
-          <span key={`ellipsis-${idx}`} style={{ padding: "0 0.5em" }}>
+          <span key={`ellipsis-${idx}`} className="pagination-ellipsis">
             …
           </span>
         ),
       )}
       <IonButton
+        className="pagination-arrow"
         size="small"
+        fill="clear"
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
         aria-label="Next Page"

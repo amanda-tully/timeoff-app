@@ -42,27 +42,62 @@ export function RequestList({ items, view, handleAction }: Props) {
             {view === "response" && item.employeeName && (
               <p>
                 <span className="bold-label">Employee:</span>{" "}
-                {item.employeeName}
+                <span data-testid={`employee-name-${item.id}`}>
+                  {item.employeeName}
+                </span>
               </p>
             )}
             <p>
-              <span className="bold-label">Start:</span> {item.startDate} <br />
-              <span className="bold-label">End:</span> {item.endDate}
+              <span
+                className="bold-label"
+                data-testid={`start-label-${item.id}`}
+              >
+                Start:
+              </span>{" "}
+              <span data-testid={`start-value-${item.id}`}>
+                {item.startDate}
+              </span>{" "}
+              <br />
+              <span className="bold-label" data-testid={`end-label-${item.id}`}>
+                End:
+              </span>{" "}
+              <span data-testid={`end-value-${item.id}`}>{item.endDate}</span>
             </p>
             <p>
-              <span className="bold-label">Status:</span>{" "}
-              {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+              <span
+                className="bold-label"
+                data-testid={`status-label-${item.id}`}
+              >
+                Status:
+              </span>{" "}
+              <span data-testid={`status-value-${item.id}`}>
+                {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+              </span>
             </p>
             {item.requestNote && (
               <p>
-                <span className="bold-label">Request Note:</span>{" "}
-                {item.requestNote}
+                <span
+                  className="bold-label"
+                  data-testid={`request-note-label-${item.id}`}
+                >
+                  Request Note:
+                </span>{" "}
+                <span data-testid={`request-note-value-${item.id}`}>
+                  {item.requestNote}
+                </span>
               </p>
             )}
             {item.responseNote && (
               <p>
-                <span className="bold-label">Response Note:</span>{" "}
-                {item.responseNote}
+                <span
+                  className="bold-label"
+                  data-testid={`response-note-label-${item.id}`}
+                >
+                  Response Note:
+                </span>{" "}
+                <span data-testid={`response-note-value-${item.id}`}>
+                  {item.responseNote}
+                </span>
               </p>
             )}
             {view === "response" && handleAction && (

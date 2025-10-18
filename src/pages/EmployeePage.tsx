@@ -5,9 +5,9 @@ import { RequestList } from "../components/RequestList/RequestList";
 import { useEmployeeRequests } from "../hooks/useTimeOffRequests";
 import { Header } from "../components/Header/Header";
 import { useState } from "react";
-// import { Pagination } from "../components/Pagination/Pagination";
+import { Pagination } from "../components/Pagination/Pagination";
 
-const PAGE_SIZE = 2;
+const PAGE_SIZE = 3;
 
 const EmployeePage: React.FC = () => {
   const { user } = useUser();
@@ -49,11 +49,11 @@ const EmployeePage: React.FC = () => {
           <h3>Request History</h3>
         </IonItem>
         <RequestList items={pagedItems} view="requests" />
-        {/*<Pagination*/}
-        {/*  currentPage={currentPage}*/}
-        {/*  totalPages={totalPages}*/}
-        {/*  onPageChange={setCurrentPage}*/}
-        {/*/>*/}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </IonContent>
     </IonPage>
   );

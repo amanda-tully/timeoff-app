@@ -18,10 +18,10 @@
 [x] Add list unit test <br>
 [x] Add navigation <br>
 [x] Add user switch toggle <br>
-[ ] Add components to pages <br>
+[x] Add components to pages <br>
 [x] Write business logic for time off requests and approvals <br>
 [x] Update theme <br>
-[ ] Add integration tests <br>
+[x] Add integration tests <br>
 [x] Write readme
 
 

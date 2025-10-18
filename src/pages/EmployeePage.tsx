@@ -1,4 +1,4 @@
-import { IonContent, IonItem, IonPage } from "@ionic/react";
+import { IonContent, IonItem, IonPage, IonSpinner } from "@ionic/react";
 import { useUser } from "../context/UserContext";
 import { FormCard } from "../components/FormCard/FormCard";
 import { RequestList } from "../components/RequestList/RequestList";
@@ -11,7 +11,10 @@ const PAGE_SIZE = 3;
 
 const EmployeePage: React.FC = () => {
   const { user } = useUser();
-  const { requests, create } = useEmployeeRequests(user.id, user.name);
+  const { requests, loading, creating, create } = useEmployeeRequests(
+    user.id,
+    user.name,
+  );
   const [currentPage, setCurrentPage] = useState(1);
 
   const items = requests.map((r) => ({
@@ -44,16 +47,25 @@ const EmployeePage: React.FC = () => {
             })
           }
           title="New Request"
+          submitting={creating}
         />
         <IonItem>
           <h3>Request History</h3>
         </IonItem>
-        <RequestList items={pagedItems} view="requests" />
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
+        {loading ? (
+          <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
+            <IonSpinner name="crescent" />
+          </div>
+        ) : (
+          <>
+            <RequestList items={pagedItems} view="requests" />
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
+          </>
+        )}
       </IonContent>
     </IonPage>
   );

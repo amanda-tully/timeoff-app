@@ -1,12 +1,20 @@
 import { useCallback, useEffect, useState } from "react";
 import { TimeOffAPI, TimeOffRequest, TimeOffType } from "../api/timeoff";
 
+const MOCK_DELAY_MS = 600;
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+
 export function useEmployeeRequests(employeeId: string, employeeName: string) {
   const [requests, setRequests] = useState<TimeOffRequest[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [creating, setCreating] = useState<boolean>(false);
 
-  const load = useCallback(() => {
+  const load = useCallback(async () => {
+    setLoading(true);
+    await delay(MOCK_DELAY_MS);
     const list = TimeOffAPI.listForEmployee(employeeId);
     setRequests(list);
+    setLoading(false);
   }, [employeeId]);
 
   useEffect(() => {
@@ -14,34 +22,42 @@ export function useEmployeeRequests(employeeId: string, employeeName: string) {
   }, [load]);
 
   const create = useCallback(
-    (input: {
+    async (input: {
       startDate: string;
       endDate: string;
       type: string;
       note?: string;
     }) => {
+      setCreating(true);
       // normalize type
       const type = input.type.toLowerCase() as TimeOffType;
+      await delay(MOCK_DELAY_MS);
       TimeOffAPI.createRequest(employeeId, employeeName, {
         startDate: input.startDate,
         endDate: input.endDate,
         type,
         note: input.note,
       });
-      load();
+      await load();
+      setCreating(false);
     },
     [employeeId, employeeName, load],
   );
 
-  return { requests, reload: load, create };
+  return { requests, loading, creating, reload: load, create };
 }
 
 export function useSupervisorRequests(supervisorId: string) {
   const [requests, setRequests] = useState<TimeOffRequest[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [updating, setUpdating] = useState<boolean>(false);
 
-  const load = useCallback(() => {
+  const load = useCallback(async () => {
+    setLoading(true);
+    await delay(MOCK_DELAY_MS);
     const list = TimeOffAPI.listForSupervisor(supervisorId);
     setRequests(list);
+    setLoading(false);
   }, [supervisorId]);
 
   useEffect(() => {
@@ -49,20 +65,26 @@ export function useSupervisorRequests(supervisorId: string) {
   }, [load]);
 
   const approve = useCallback(
-    (id: string, note?: string) => {
+    async (id: string, note?: string) => {
+      setUpdating(true);
+      await delay(MOCK_DELAY_MS);
       TimeOffAPI.updateStatus(id, "approved", note);
-      load();
+      await load();
+      setUpdating(false);
     },
     [load],
   );
 
   const reject = useCallback(
-    (id: string, note?: string) => {
+    async (id: string, note?: string) => {
+      setUpdating(true);
+      await delay(MOCK_DELAY_MS);
       TimeOffAPI.updateStatus(id, "rejected", note);
-      load();
+      await load();
+      setUpdating(false);
     },
     [load],
   );
 
-  return { requests, reload: load, approve, reject };
+  return { requests, loading, updating, reload: load, approve, reject };
 }

@@ -1,0 +1,78 @@
+.custom-modal {
+    --backdrop-opacity: 0.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --height: auto;
+    --border-radius: 16px;
+    --width: 90%;
+    --background: var(--ion-background-color, #fff);
+}
+
+.modal-content {
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: var(--ion-color-light, #fff);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--ion-color-primary, #3880ff);
+}
+
+.modal-details {
+    background: var(--ion-color-light-tint, #f9f9f9);
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    color: var(--ion-text-color-step-600, #333);
+}
+
+.modal-details p {
+    margin: 0.25rem 0;
+    line-height: 1.4;
+}
+
+.supervisor-note-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+    color: var(--ion-text-color-step-600, #444);
+}
+
+.supervisor-note-input {
+    width: 100%;
+    min-height: 100px;
+    resize: vertical;
+    border: 1px solid var(--ion-color-medium, #ccc);
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    outline: none;
+    background: var(--ion-color-light, #fff);
+    color: var(--ion-text-color, #000);
+}
+
+.supervisor-note-input:focus {
+    border-color: var(--ion-color-primary, #3880ff);
+    box-shadow: 0 0 0 2px rgba(56, 128, 255, 0.2);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+}
+
+.modal-actions ion-button {
+    flex: 1;
+}
+

@@ -14,12 +14,14 @@ import {
   IonModal,
   IonDatetime,
   IonDatetimeButton,
+  IonSpinner,
 } from "@ionic/react";
 
 import "./FormCard.css";
 
 interface Props {
   title: string;
+  submitting?: boolean;
   onSubmit: (values: {
     startDate: string;
     endDate: string;
@@ -28,7 +30,7 @@ interface Props {
   }) => void;
 }
 
-export function FormCard({ title, onSubmit }: Props) {
+export function FormCard({ title, submitting = false, onSubmit }: Props) {
   const today = new Date().toISOString().split("T")[0];
   const [startDate, setStartDate] = useState<string>(today);
   const [endDate, setEndDate] = useState<string>(today);
@@ -60,6 +62,12 @@ export function FormCard({ title, onSubmit }: Props) {
       type,
       note,
     });
+
+    setStartDate(today);
+    setEndDate(today);
+    setType("");
+    setNote("");
+    setErrors({});
   }
 
   const isFormValid = startDate && endDate && type;
@@ -79,6 +87,7 @@ export function FormCard({ title, onSubmit }: Props) {
             <IonDatetimeButton
               datetime="start-date-picker"
               className="date-left-align"
+              disabled={submitting}
             />
             <IonModal keepContentsMounted={true}>
               <IonDatetime
@@ -109,6 +118,7 @@ export function FormCard({ title, onSubmit }: Props) {
             <IonDatetimeButton
               datetime="end-date-picker"
               className="date-left-align"
+              disabled={submitting}
             />
             <IonModal keepContentsMounted={true}>
               <IonDatetime
@@ -144,6 +154,7 @@ export function FormCard({ title, onSubmit }: Props) {
                 setType(e.detail.value);
                 setErrors((prev) => ({ ...prev, type: undefined }));
               }}
+              disabled={submitting}
             >
               <IonSelectOption value="Vacation">Vacation</IonSelectOption>
               <IonSelectOption value="Sick day">Sick day</IonSelectOption>
@@ -166,6 +177,7 @@ export function FormCard({ title, onSubmit }: Props) {
               onIonChange={(e) => setNote(e.detail.value!)}
               placeholder="Reason for request..."
               rows={4}
+              disabled={submitting}
             />
           </IonItem>
 
@@ -174,10 +186,10 @@ export function FormCard({ title, onSubmit }: Props) {
               expand="block"
               color="primary"
               type="submit"
-              disabled={!isFormValid}
+              disabled={!isFormValid || submitting}
               role="button"
             >
-              Submit
+              {submitting ? <IonSpinner name="dots" /> : "Submit"}
             </IonButton>
           </IonButtons>
         </form>

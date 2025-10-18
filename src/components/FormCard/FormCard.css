@@ -1,0 +1,122 @@
+.form-card {
+    --padding-start: 1.5rem;
+    --padding-end: 1.5rem;
+    margin: 2rem auto;
+    max-width: 420px;
+    background: var(--ion-background-color, #fff);
+    border-radius: 18px;
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.06);
+    border: 1px solid #f2f2f2;
+}
+
+.header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-item {
+    --inner-padding-end: 0;
+    margin-bottom: 0.25rem;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.error-text {
+    color: var(--ion-color-danger, #e74c3c);
+    font-size: 0.92rem;
+    margin-top: 0.15rem;
+    margin-left: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.form-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.ion-button[disabled],
+.ion-button:disabled {
+    opacity: 0.6;
+    filter: grayscale(0.2);
+    cursor: not-allowed;
+}
+
+
+.form-item ion-datetime-button {
+    --background: #fff;
+    --background-hover: #fff;
+    --background-focused: #fff;
+    --border-radius: 6px;
+    --box-shadow: none;
+    --color: var(--ion-text-color, #222);
+    --padding-start: 12px;
+    --padding-end: 36px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    --border-width: 1px;
+    --border-style: solid;
+    --border-color: #d1d1d1;
+    --min-height: 44px;
+    width: 100%;
+    font-size: 1rem;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+.form-item ion-datetime-button:focus-within,
+.form-item ion-datetime-button:focus {
+    --border-color: var(--ion-color-primary, #ff9800);
+    outline: none;
+}
+.form-item ion-datetime-button::part(native) {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+.form-item ion-datetime-button ion-icon {
+    color: #bdbdbd;
+    font-size: 1.2em;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+.date-left-align {
+    text-align: left !important;
+    justify-content: flex-start !important;
+}
+
+@media (max-width: 600px) {
+    .form-card {
+        margin: 1rem;
+        max-width: 98vw;
+        border-radius: 12px;
+    }
+    .header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+}

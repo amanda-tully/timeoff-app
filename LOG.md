@@ -9,8 +9,9 @@
 [x] Identify components to built and components to use from ionic framework <br>
 [x] Setup storybook <br>
 [x] Install xcode and android studio and setup capacitor <br>
-[ ] Add card component and link to storybook <br>
-[ ] Write unit test for card component <br>
+[x] Add card component <br>
+[x] Add card component to storybook <br>
+[x] Write unit test for card component <br>
 [ ] Add pagination component and link to storybook <br>
 [ ] Add pagination unit test <br>
 [ ] Add list component and link to storybook <br>
@@ -18,8 +19,8 @@
 [x] Add navigation <br>
 [x] Add user switch toggle <br>
 [ ] Add components to pages <br>
-[ ] Write business logic for time off requests and approvals <br>
-[ ] Update theme <br>
+[x] Write business logic for time off requests and approvals <br>
+[x] Update theme <br>
 [ ] Add integration tests <br>
 [ ] Write readme
 
@@ -101,7 +102,7 @@ These are questions I would ask the product owner:
 ### Identify components to built and components to use from ionic framework
 Thursday 16:45 - 17:15 <br>
 Looked at the component docs. The main components that are unique are the timeoff card with the form items in it. 
-The request/pending list. The pagination. 
+The request/pending list. The pagination.
 
 ## Write unit test for card component 
 Things I should test:
@@ -118,9 +119,44 @@ Friday 10:30 - 10:45 <br>
 Add configuration for ionic in storybook
 
 ## Routing and switching users
-14:00-14:50 <br>
+Friday 14:00-14:50 <br>
 Learning about routing and the IonActionSheet to implement different views.
 Added UserContext and dummy users.
 
+Friday 15:00-16:00 <br>
+Creating all three custom components and linking them to Storybook and creating a basic test. I've not tried to style them nicely yet.
+I want to reuse my List for both the Supervisor and Employee views, but I am still thinking about which props/prop names to use to make it as readable as possible.
+I want to work a little bit on the business logic and data type structure for requesting timeoff and for responding to the request, that should make my prop definition easier to create.
+
+## Request business logic
+Friday 16:00-16:45 <br>
+* Implemented a mock API with localStorage persistence at src/api/timeoff.ts and hooks at src/hooks/useTimeOffRequests.ts.
+* Wired EmployeePage to create requests via FormCard and list own requests. 
+* Wired SupervisorPage to list team requests and approve/reject. 
+
+
+## UI changes to make
+Friday 16:45-17:30 <br>
+I want to update the UI so it looks a bit better, the changes I want to make: <br>
+[x] Change colors
+[x] Replace header shadow with lighter shadow
+[x] Change titles in navigation, Request, Response, Switch User
+[x] Change icons in navigation
+[x] Add empty list text to list component
+[x] Add title to list
+[ ] Update list UI
+[x] Update form UI
+[x] Remove text from header
+[x] Add avatar to header
+[ ] Remove request once approved or rejected and add it to history list for supervisor
+[ ] Style and make modal functional
+
+
+## Add components to pages
+Saturday 9:15-10:15 <br>
+Finished building the FormCard, the test and storybook, and added it to EmployeePage. 
+Also added the unfinished Pagination and RequestList component to the EmployeePage to see how it all works together.
+I ran into some issues writing the unit test, I wasn't able to select my items and the regular way of filling in a form inside the test didn't work.
+With some help from ChatGPT I was able to fix the test.
 
 

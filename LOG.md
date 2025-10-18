@@ -104,16 +104,6 @@ Thursday 16:45 - 17:15 <br>
 Looked at the component docs. The main components that are unique are the timeoff card with the form items in it. 
 The request/pending list. The pagination.
 
-## Write unit test for card component 
-Things I should test:
-*  enter a start date and validate that it's not in the past
-*  enter an end date and validate that it's not before the start date
-*  having a select with these values: vacation/sick-day/personal
-*  being able to select a value
-*  validate that the form cannot be submitted without filling in the mandatory fields or if there are errors
-*  validate that the form can be submitted if the mandatory fields are filled in and there are no errors
-*  being able to type in the note field
-
 ## Storybook
 Friday 10:30 - 10:45 <br>
 Add configuration for ionic in storybook
@@ -123,6 +113,7 @@ Friday 14:00-14:50 <br>
 Learning about routing and the IonActionSheet to implement different views.
 Added UserContext and dummy users.
 
+## Components
 Friday 15:00-16:00 <br>
 Creating all three custom components and linking them to Storybook and creating a basic test. I've not tried to style them nicely yet.
 I want to reuse my List for both the Supervisor and Employee views, but I am still thinking about which props/prop names to use to make it as readable as possible.
@@ -144,12 +135,9 @@ I want to update the UI so it looks a bit better, the changes I want to make: <b
 [x] Change icons in navigation
 [x] Add empty list text to list component
 [x] Add title to list
-[ ] Update list UI
 [x] Update form UI
 [x] Remove text from header
 [x] Add avatar to header
-[ ] Remove request once approved or rejected and add it to history list for supervisor
-[ ] Style and make modal functional
 
 
 ## Add components to pages
@@ -160,3 +148,8 @@ I ran into some issues writing the unit test, I wasn't able to select my items a
 With some help from ChatGPT I was able to fix the test.
 
 
+## Deploy project to Vercel
+Saturday 10:15-10:20 <br>
+Added project to vercel, so I can check everything on my own phone.
+## UI updates
+[x] Remove request once approved or rejected and add it to history list for supervisor

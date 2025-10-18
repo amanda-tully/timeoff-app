@@ -6,9 +6,6 @@ import { RequestList } from "../components/RequestList/RequestList";
 const meta = {
   title: "Request List",
   component: RequestList,
-  parameters: {
-    layout: "centered",
-  },
   argTypes: {},
   tags: ["autodocs"],
   args: {

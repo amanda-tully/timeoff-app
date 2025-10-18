@@ -194,3 +194,20 @@ Saturday 16:00-17:15 <br>
 
 ## Add infinite scroll to supervisor request approval section
 Saturday 17:15-17:30  <br>
+
+## Move code to components
+Saturday 17:15-17:45  <br>
+The supervisor page was getting a bit bloated so I moved code to components.
+
+
+## Testing
+[x] Check storybook 
+[x] Make sure all the tests are passing
+
+
+
+
+
+
+
+

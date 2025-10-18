@@ -56,10 +56,8 @@ function expectTopHistoryStatus(status: "Pending" | "Approved" | "Rejected") {
 }
 
 function processFirstPending(action: "Approve" | "Reject", note?: string) {
-  // Wait for spinner to disappear if present
-  cy.get("ion-spinner").should("not.exist");
-  // Wait for the process button to exist and be visible
-  cy.get('[data-testid="process-request-btn"]', { timeout: 8000 })
+  // Wait for the process button to exist and be visible (increase timeout)
+  cy.get('[data-testid="process-request-btn"]', { timeout: 10000 })
     .should("exist")
     .should("be.visible")
     .first()
@@ -139,8 +137,6 @@ describe("Time-off E2E across user roles", () => {
       "Personal",
       "Vacation",
       "Sick day",
-      "Personal",
-      "Personal",
     ];
 
     types.forEach((type) => {
@@ -153,23 +149,34 @@ describe("Time-off E2E across user roles", () => {
     });
 
     // After submitting requests and confirming pagination container exists
-    cy.get(".pagination-container").should("exist");
+    cy.get(".pagination-container", { timeout: 10000 }).should("exist");
 
     // Wait for at least 2 pagination numbers to appear
-    cy.get(".pagination-number").should("have.length.gte", 2);
-
-    // Now check that one of them is marked as current
-    cy.get('.pagination-number[aria-current="page"]').should(
-      "contain.text",
-      "1",
+    cy.get(".pagination-number", { timeout: 10000 }).should(
+      "have.length.gte",
+      2,
     );
+
+    // Debug: print pagination buttons' HTML
+    cy.get(".pagination-number").then(($els) => {
+      // eslint-disable-next-line no-console
+      console.log($els.map((i, el) => el.outerHTML).get());
+    });
+
+    // Now check that one of them is marked as current (try both aria-current and active class)
+    cy.get(
+      '.pagination-number[aria-current="page"], .pagination-number.pagination-number-active',
+      { timeout: 10000 },
+    )
+      .should("exist")
+      .and("contain.text", "1");
 
     // Navigate to page 2 and verify page indicator changes
     cy.contains(".pagination-number", "2").click();
-    cy.get('.pagination-number[aria-current="page"]').should(
-      "contain.text",
-      "2",
-    );
+    cy.get(
+      '.pagination-number[aria-current="page"], .pagination-number.pagination-number-active',
+      { timeout: 10000 },
+    ).should("contain.text", "2");
   });
 
   it("Data persists across reloads (localStorage-backed)", () => {

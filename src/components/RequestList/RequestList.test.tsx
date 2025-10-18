@@ -30,15 +30,17 @@ describe("RequestList", () => {
   test("renders all request fields", () => {
     render(<RequestList items={sampleItems} view="requests" />);
     expect(screen.getByText(/Vacation Request/i)).toBeInTheDocument();
-    expect(screen.getByTestId("start-value-1")).toHaveTextContent("2025-10-20");
-    expect(screen.getByTestId("end-value-1")).toHaveTextContent("2025-10-22");
+    expect(screen.getByTestId("date-value-1")).toHaveTextContent(
+      "2025-10-20 - 2025-10-22",
+    );
     expect(screen.getByTestId("status-value-1")).toHaveTextContent("Pending");
     expect(screen.getByTestId("request-note-value-1")).toHaveTextContent(
       "Family trip",
     );
     expect(screen.getByText(/Sick-day Request/i)).toBeInTheDocument();
-    expect(screen.getByTestId("start-value-2")).toHaveTextContent("2025-11-01");
-    expect(screen.getByTestId("end-value-2")).toHaveTextContent("2025-11-01");
+    expect(screen.getByTestId("date-value-2")).toHaveTextContent(
+      "2025-11-01 - 2025-11-01",
+    );
     expect(screen.getByTestId("status-value-2")).toHaveTextContent("Approved");
     expect(screen.getByTestId("request-note-value-2")).toHaveTextContent("Flu");
     expect(screen.getByTestId("response-note-value-2")).toHaveTextContent(

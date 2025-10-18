@@ -34,71 +34,82 @@ export function RequestList({ items, view, handleAction }: Props) {
   return (
     <IonList>
       {items.map((item) => (
-        <IonItem key={item.id}>
-          <IonLabel className="ion-text-wrap">
-            <p className="bold-label">
-              {item.type.charAt(0).toUpperCase() + item.type.slice(1)} Request
-            </p>
-            {view === "response" && item.employeeName && (
-              <p>
-                <span className="bold-label">Employee:</span>{" "}
-                <span data-testid={`employee-name-${item.id}`}>
-                  {item.employeeName}
+        <IonItem key={item.id} className="request-list-item">
+          <div className="request-list-item-content">
+            <div className="request-list-item-header">
+              <span className="request-type">
+                {item.type.charAt(0).toUpperCase() + item.type.slice(1)} Request
+              </span>
+              <span
+                className={`status-indicator status-${item.status}`}
+                data-testid={`status-indicator-${item.id}`}
+              ></span>
+            </div>
+            {view === "response" && (
+              <div className="request-employee-row">
+                <span className="request-label">Employee:</span>
+                <span
+                  className="request-employee"
+                  data-testid={`employee-name-${item.id}`}
+                >
+                  {item.employeeName || "Unknown"}
                 </span>
-              </p>
+              </div>
             )}
-            <p>
+            <div className="request-dates-row">
+              <span className="request-label">Date:</span>
               <span
-                className="bold-label"
-                data-testid={`start-label-${item.id}`}
+                className="request-value"
+                data-testid={`date-value-${item.id}`}
               >
-                Start:
-              </span>{" "}
-              <span data-testid={`start-value-${item.id}`}>
-                {item.startDate}
-              </span>{" "}
-              <br />
-              <span className="bold-label" data-testid={`end-label-${item.id}`}>
-                End:
-              </span>{" "}
-              <span data-testid={`end-value-${item.id}`}>{item.endDate}</span>
-            </p>
-            <p>
+                {item.startDate} - {item.endDate}
+              </span>
+            </div>
+            <div className="request-status-row">
               <span
-                className="bold-label"
+                className="request-label"
                 data-testid={`status-label-${item.id}`}
               >
                 Status:
-              </span>{" "}
-              <span data-testid={`status-value-${item.id}`}>
+              </span>
+              <span
+                className="request-value"
+                data-testid={`status-value-${item.id}`}
+              >
                 {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
               </span>
-            </p>
+            </div>
             {item.requestNote && (
-              <p>
+              <div className="request-note-row">
                 <span
-                  className="bold-label"
+                  className="request-label"
                   data-testid={`request-note-label-${item.id}`}
                 >
                   Request Note:
-                </span>{" "}
-                <span data-testid={`request-note-value-${item.id}`}>
+                </span>
+                <span
+                  className="request-value"
+                  data-testid={`request-note-value-${item.id}`}
+                >
                   {item.requestNote}
                 </span>
-              </p>
+              </div>
             )}
             {item.responseNote && (
-              <p>
+              <div className="response-note-row">
                 <span
-                  className="bold-label"
+                  className="request-label"
                   data-testid={`response-note-label-${item.id}`}
                 >
                   Response Note:
-                </span>{" "}
-                <span data-testid={`response-note-value-${item.id}`}>
+                </span>
+                <span
+                  className="request-value"
+                  data-testid={`response-note-value-${item.id}`}
+                >
                   {item.responseNote}
                 </span>
-              </p>
+              </div>
             )}
             {view === "response" && handleAction && (
               <div className="action-buttons">
@@ -113,7 +124,7 @@ export function RequestList({ items, view, handleAction }: Props) {
                 </IonButton>
               </div>
             )}
-          </IonLabel>
+          </div>
         </IonItem>
       ))}
     </IonList>

@@ -5,6 +5,91 @@
 .action-buttons {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
+.status-indicator {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+  margin-right: 0;
+  vertical-align: middle;
+  background: #ccc;
+}
+
+.status-pending {
+  background: #888;
+}
+
+.status-approved {
+  background: #2ecc40;
+}
+
+.status-rejected {
+  background: #e74c3c;
+}
+
+.request-list-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --background: transparent;
+}
+
+.request-list-item-content {
+  position: relative;
+  width: 100%;
+  padding: 1rem 1rem 0.75rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.request-list-item-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.request-type {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.status-indicator {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.request-label {
+  font-weight: 500;
+  color: #555;
+  margin-right: 0.25rem;
+}
+.request-value {
+  color: #222;
+  margin-right: 0.75rem;
+}
+.request-employee-row,
+.request-dates-row,
+.request-status-row,
+.request-note-row,
+.response-note-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.request-employee {
+  color: #333;
+  margin-left: 0.25rem;
+}
+.action-buttons {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}

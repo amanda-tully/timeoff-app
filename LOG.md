@@ -199,6 +199,9 @@ Saturday 17:15-17:30  <br>
 Saturday 17:15-17:45  <br>
 The supervisor page was getting a bit bloated so I moved code to components.
 
+## RequestList component
+[x] Add some sort of visual to indicate current status of request
+
 
 ## Testing
 [x] Check storybook 

@@ -16,6 +16,6 @@ export const HistorySection: React.FC<HistorySectionProps> = ({
     <IonItem lines="none">
       <h4>History</h4>
     </IonItem>
-    {loading ? <Spinner /> : <RequestList items={items} view="requests" />}
+    {loading ? <Spinner /> : <RequestList items={items} view="response" />}
   </div>
 );

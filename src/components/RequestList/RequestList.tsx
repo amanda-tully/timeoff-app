@@ -36,9 +36,9 @@ export function RequestList({ items, view, handleAction }: Props) {
       {items.map((item) => (
         <IonItem key={item.id}>
           <IonLabel className="ion-text-wrap">
-            <h2>
+            <p className="bold-label">
               {item.type.charAt(0).toUpperCase() + item.type.slice(1)} Request
-            </h2>
+            </p>
             {view === "response" && item.employeeName && (
               <p>
                 <span className="bold-label">Employee:</span>{" "}

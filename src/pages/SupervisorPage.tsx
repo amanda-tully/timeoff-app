@@ -1,22 +1,14 @@
-import {
-  IonContent,
-  IonItem,
-  IonPage,
-  IonModal,
-  IonButton,
-  IonSpinner,
-  IonInfiniteScroll,
-  IonInfiniteScrollContent,
-} from "@ionic/react";
+import { IonContent, IonPage } from "@ionic/react";
 import { useState } from "react";
 import { useUser } from "../context/UserContext";
-import { RequestList } from "../components/RequestList/RequestList";
 import { useSupervisorRequests } from "../hooks/useTimeOffRequests";
 import { Header } from "../components/Header/Header";
 import { Pagination } from "../components/Pagination/Pagination";
 
 import "./SupervisorPage.css";
-import { Spinner } from "../components/Spinner/Spinner"; // <-- Import the CSS here
+import { ProcessRequestModal } from "../components/SupervisorSections/ProcessRequestModal";
+import { HistorySection } from "../components/SupervisorSections/HistorySection";
+import { PendingRequestsSection } from "../components/SupervisorSections/PendingRequestsSection";
 
 const PAGE_SIZE = 3;
 const PENDING_PAGE_SIZE = 8;
@@ -85,42 +77,17 @@ const SupervisorPage: React.FC = () => {
     <IonPage>
       <Header initials={user?.name?.[0]} />
       <IonContent fullscreen>
-        <div>
-          <IonItem lines="none">
-            <h4>Pending Requests</h4>
-          </IonItem>
-          {loading ? (
-            <Spinner />
-          ) : (
-            <>
-              <RequestList
-                items={pagedPendingItems}
-                view="response"
-                handleAction={handleAction}
-              />
-              <IonInfiniteScroll
-                onIonInfinite={(ev) => {
-                  setPendingPage((prev) => prev + 1);
-                  ev.target.complete();
-                }}
-                threshold="100px"
-                disabled={pagedPendingItems.length >= toProcessItems.length}
-              >
-                <IonInfiniteScrollContent loadingText="Loading more requests..." />
-              </IonInfiniteScroll>
-            </>
-          )}
-        </div>
-        <div>
-          <IonItem lines="none">
-            <h4>History</h4>
-          </IonItem>
-          {loading ? (
-            <Spinner />
-          ) : (
-            <RequestList items={pagedItems} view="requests" />
-          )}
-        </div>
+        <PendingRequestsSection
+          items={pagedPendingItems}
+          allItems={toProcessItems}
+          loading={loading}
+          handleAction={handleAction}
+          onInfinite={(ev) => {
+            setPendingPage((prev) => prev + 1);
+            (ev.target as HTMLIonInfiniteScrollElement).complete();
+          }}
+        />
+        <HistorySection items={pagedItems} loading={loading} />
         {!loading && (
           <Pagination
             currentPage={currentPage}
@@ -128,75 +95,16 @@ const SupervisorPage: React.FC = () => {
             onPageChange={setCurrentPage}
           />
         )}
-
-        <IonModal
+        <ProcessRequestModal
           isOpen={modalOpen}
           onDidDismiss={handleModalClose}
-          className="custom-modal"
-        >
-          <div className="modal-content">
-            <h2>Process Request</h2>
-
-            {selectedRequest && (
-              <div className="modal-details">
-                <p>
-                  <strong>Employee:</strong> {selectedRequest.employeeName}
-                </p>
-                <p>
-                  <strong>Type:</strong> {selectedRequest.type}
-                </p>
-                <p>
-                  <strong>Start:</strong> {selectedRequest.startDate}
-                </p>
-                <p>
-                  <strong>End:</strong> {selectedRequest.endDate}
-                </p>
-                <p>
-                  <strong>Note:</strong> {selectedRequest.requestNote}
-                </p>
-              </div>
-            )}
-
-            <label
-              htmlFor="supervisor-note-input"
-              className="supervisor-note-label"
-            >
-              Supervisor Note
-            </label>
-            <textarea
-              id="supervisor-note-input"
-              className="supervisor-note-input"
-              value={supervisorNote}
-              onChange={(e) => setSupervisorNote(e.target.value)}
-              placeholder="Add a note (optional)"
-            />
-
-            <div className="modal-actions">
-              <IonButton
-                color="dark"
-                fill="outline"
-                onClick={handleModalClose}
-                disabled={updating}
-              >
-                Cancel
-              </IonButton>
-              <IonButton
-                color="danger"
-                fill="outline"
-                onClick={() => handleModalSubmit("reject")}
-                disabled={updating}
-              >
-                {updating ? <IonSpinner name="dots" /> : "Reject"}
-              </IonButton>
-              <IonButton
-                onClick={() => handleModalSubmit("approve")}
-                disabled={updating}
-              >
-                {updating ? <IonSpinner name="dots" /> : "Approve"}
-              </IonButton>
-            </div>
-          </div>
-        </IonModal>
+          updating={updating}
+          selectedRequest={selectedRequest}
+          supervisorNote={supervisorNote}
+          setSupervisorNote={setSupervisorNote}
+          handleModalSubmit={handleModalSubmit}
+          handleModalClose={handleModalClose}
+        />
       </IonContent>
     </IonPage>
   );

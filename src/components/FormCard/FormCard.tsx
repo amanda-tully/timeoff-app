@@ -175,6 +175,10 @@ export function FormCard({ title, submitting = false, onSubmit }: Props) {
             <IonTextarea
               value={note}
               onIonChange={(e) => setNote(e.detail.value!)}
+              onBlur={(e) => {
+                // @ts-expect-error: Ionic's event typing
+                setNote(e.target.value);
+              }}
               placeholder="Reason for request..."
               rows={4}
               disabled={submitting}

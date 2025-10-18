@@ -6,7 +6,7 @@ export type ResponseType = "pending" | "approved" | "rejected";
 
 export interface RequestListItem {
   id: string;
-  employeeName: string;
+  employeeName?: string;
   startDate: string;
   endDate: string;
   type: TimeOffType;

@@ -6,6 +6,7 @@ import { useEmployeeRequests } from "../hooks/useTimeOffRequests";
 import { Header } from "../components/Header/Header";
 import { useState } from "react";
 import { Pagination } from "../components/Pagination/Pagination";
+import { Spinner } from "../components/Spinner/Spinner";
 
 const PAGE_SIZE = 3;
 
@@ -50,12 +51,10 @@ const EmployeePage: React.FC = () => {
           submitting={creating}
         />
         <IonItem>
-          <h3>Request History</h3>
+          <h3>History</h3>
         </IonItem>
         {loading ? (
-          <div style={{ display: "flex", justifyContent: "center", padding: 24 }}>
-            <IonSpinner name="crescent" />
-          </div>
+          <Spinner />
         ) : (
           <>
             <RequestList items={pagedItems} view="requests" />

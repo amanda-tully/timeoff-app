@@ -106,6 +106,7 @@ export function RequestList({ items, view, handleAction }: Props) {
                   id="open-modal"
                   size="small"
                   color="primary"
+                  data-testid="process-request-btn"
                   onClick={() => handleAction(item.id)}
                 >
                   Process Request

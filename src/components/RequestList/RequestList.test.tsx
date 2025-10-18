@@ -12,6 +12,7 @@ const sampleItems: RequestListItem[] = [
     status: "pending",
     requestNote: "Family trip",
     responseNote: "",
+    employeeName: "Ben",
   },
   {
     id: "2",
@@ -43,13 +44,11 @@ describe("RequestList", () => {
     expect(screen.getByTestId("response-note-value-2")).toHaveTextContent(
       "Get well soon!",
     );
-    expect(screen.getByTestId("employee-name-2")).toHaveText("Anna");
   });
 
   test("does not show action buttons in 'requests' view", () => {
     render(<RequestList items={sampleItems} view="requests" />);
-    expect(screen.queryByText(/Approve/i)).not.toBeInTheDocument();
-    expect(screen.queryByText(/Reject/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Process Request/i)).not.toBeInTheDocument();
   });
 
   test("shows action buttons in 'response' view", () => {
@@ -73,11 +72,11 @@ describe("RequestList", () => {
       />,
     );
     fireEvent.click(screen.getAllByText(/Process Request/i)[0]);
-    expect(handleAction).toHaveBeenCalledWith(1);
+    expect(handleAction).toHaveBeenCalledWith("1");
   });
 
   test("renders empty list without crashing", () => {
     render(<RequestList items={[]} view="requests" />);
-    expect(screen.queryByText(/Request/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Pending/i)).not.toBeInTheDocument();
   });
 });

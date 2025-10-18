@@ -5,6 +5,8 @@ import {
   IonModal,
   IonButton,
   IonSpinner,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
 } from "@ionic/react";
 import { useState } from "react";
 import { useUser } from "../context/UserContext";
@@ -13,16 +15,18 @@ import { useSupervisorRequests } from "../hooks/useTimeOffRequests";
 import { Header } from "../components/Header/Header";
 import { Pagination } from "../components/Pagination/Pagination";
 
-import "./SupervisorPage.css"; // <-- Import the CSS here
+import "./SupervisorPage.css";
+import { Spinner } from "../components/Spinner/Spinner"; // <-- Import the CSS here
 
 const PAGE_SIZE = 3;
+const PENDING_PAGE_SIZE = 8;
 
 const SupervisorPage: React.FC = () => {
   const { user } = useUser();
   const { requests, loading, updating, approve, reject } =
     useSupervisorRequests(user.id);
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [pendingPage, setPendingPage] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedRequestId, setSelectedRequestId] = useState<
     string | number | null
@@ -41,6 +45,10 @@ const SupervisorPage: React.FC = () => {
   }));
 
   const toProcessItems = items.filter((item) => item.status === "pending");
+  const pagedPendingItems = toProcessItems.slice(
+    0,
+    pendingPage * PENDING_PAGE_SIZE,
+  );
   const historyItems = items.filter((item) => item.status !== "pending");
   const totalPages = Math.max(1, Math.ceil(historyItems.length / PAGE_SIZE));
   const pagedItems = historyItems.slice(
@@ -82,17 +90,25 @@ const SupervisorPage: React.FC = () => {
             <h4>Pending Requests</h4>
           </IonItem>
           {loading ? (
-            <div
-              style={{ display: "flex", justifyContent: "center", padding: 16 }}
-            >
-              <IonSpinner name="crescent" />
-            </div>
+            <Spinner />
           ) : (
-            <RequestList
-              items={toProcessItems}
-              view="response"
-              handleAction={handleAction}
-            />
+            <>
+              <RequestList
+                items={pagedPendingItems}
+                view="response"
+                handleAction={handleAction}
+              />
+              <IonInfiniteScroll
+                onIonInfinite={(ev) => {
+                  setPendingPage((prev) => prev + 1);
+                  ev.target.complete();
+                }}
+                threshold="100px"
+                disabled={pagedPendingItems.length >= toProcessItems.length}
+              >
+                <IonInfiniteScrollContent loadingText="Loading more requests..." />
+              </IonInfiniteScroll>
+            </>
           )}
         </div>
         <div>
@@ -100,11 +116,7 @@ const SupervisorPage: React.FC = () => {
             <h4>History</h4>
           </IonItem>
           {loading ? (
-            <div
-              style={{ display: "flex", justifyContent: "center", padding: 16 }}
-            >
-              <IonSpinner name="crescent" />
-            </div>
+            <Spinner />
           ) : (
             <RequestList items={pagedItems} view="requests" />
           )}

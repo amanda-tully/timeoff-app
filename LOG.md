@@ -181,3 +181,16 @@ Luckily the setup was really simple and the tests are running. Next step is to u
 I need to make the Supervisor response modal. I am also thinking that the pending requests should be an infinite scroll and 
 not paginated, I saw that Ionic has something for that.
 
+## Add loading states
+Saturday 14:30-15:00 <br>
+I've added mocked loading and spinners to the project to make it a bit more realistic even though the data is mocked.
+
+## Style and make modal functional
+Saturday 15:00-15:20 <br>
+Styled the response modal and added components to SuperVisor page
+
+## Finish e2e test
+Saturday 16:00-17:15 <br>
+
+## Add infinite scroll to supervisor request approval section
+Saturday 17:15-17:30  <br>

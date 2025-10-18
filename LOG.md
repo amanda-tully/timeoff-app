@@ -14,8 +14,8 @@
 [x] Write unit test for card component <br>
 [ ] Add pagination component and link to storybook <br>
 [ ] Add pagination unit test <br>
-[ ] Add list component and link to storybook <br>
-[ ] Add list unit test <br>
+[x] Add list component and link to storybook <br>
+[x] Add list unit test <br>
 [x] Add navigation <br>
 [x] Add user switch toggle <br>
 [ ] Add components to pages <br>
@@ -151,5 +151,10 @@ With some help from ChatGPT I was able to fix the test.
 ## Deploy project to Vercel
 Saturday 10:15-10:20 <br>
 Added project to vercel, so I can check everything on my own phone.
-## UI updates
+
+## UI updates and Unit tests
+Saturday 10:30-12:00 <br>
+Worked on the unit tests some more. Found a better way to handle the buttons. Added Pagination unit test. Made some UI updates. 
+Worked some more on the Pagination.
+[x] Update list UI
 [x] Remove request once approved or rejected and add it to history list for supervisor

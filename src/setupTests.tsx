@@ -14,8 +14,8 @@ window.matchMedia =
     };
   };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 vi.mock("@ionic/react", async (importOriginal) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const actual = (await importOriginal()) as Record<string, any>;
 
   return {

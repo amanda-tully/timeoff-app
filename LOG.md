@@ -154,7 +154,7 @@ Added project to vercel, so I can check everything on my own phone.
 ## UI updates and Unit tests
 Saturday 10:30-12:00 <br>
 Worked on the unit tests some more. Found a better way to handle the buttons. Added Pagination unit test. Made some UI updates. 
-Worked some more on the Pagination.
+Worked some more on the Pagination. <br>
 [x] Update list UI <br>
 [x] Remove request once approved or rejected and add it to history list for supervisor <br>
 [x] Move switching user to header

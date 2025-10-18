@@ -1,5 +1,5 @@
-import { Route, Redirect, Switch, useHistory } from "react-router-dom";
-import React, { useState } from "react";
+import { Route, Redirect, Switch } from "react-router-dom";
+import React from "react";
 import {
   IonApp,
   IonIcon,
@@ -8,15 +8,13 @@ import {
   IonTabBar,
   IonTabButton,
   IonTabs,
-  IonActionSheet,
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { people, alarm, clipboard } from "ionicons/icons";
+import { alarm, clipboard } from "ionicons/icons";
 import EmployeePage from "./pages/EmployeePage";
 import SupervisorPage from "./pages/SupervisorPage";
-import { User, UserProvider, useUser } from "./context/UserContext";
-import { users } from "./data/Users";
+import { UserProvider, useUser } from "./context/UserContext";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -40,9 +38,7 @@ import "./theme/variables.css";
 setupIonicReact();
 
 const AppInner: React.FC = () => {
-  const { user, setUser } = useUser();
-  const [showSheet, setShowSheet] = useState(false);
-  const history = useHistory();
+  const { user } = useUser();
 
   const hasRequestView = user.availableViews.includes("request");
   const hasResponseView = user.availableViews.includes("response");
@@ -53,21 +49,8 @@ const AppInner: React.FC = () => {
       ? "/supervisor"
       : "/";
 
-  function switchUser(newUser: User) {
-    setUser(newUser);
-    setShowSheet(false);
-    // Redirect to the correct view immediately after switching
-    if (newUser.availableViews.includes("request")) {
-      history.replace("/employee");
-    } else if (newUser.availableViews.includes("response")) {
-      history.replace("/supervisor");
-    } else {
-      history.replace("/");
-    }
-  }
-
   return (
-    <IonTabs>
+    <IonTabs key={user.id}>
       <IonRouterOutlet>
         <Switch>
           {hasRequestView && (
@@ -93,33 +76,7 @@ const AppInner: React.FC = () => {
             <IonLabel>Responses</IonLabel>
           </IonTabButton>
         )}
-
-        <IonTabButton
-          tab="user"
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            setShowSheet(true);
-          }}
-        >
-          <IonIcon aria-hidden="true" icon={people} />
-          <IonLabel>Switch user</IonLabel>
-        </IonTabButton>
       </IonTabBar>
-      <IonActionSheet
-        isOpen={showSheet}
-        header="Switch user"
-        onDidDismiss={() => setShowSheet(false)}
-        buttons={[
-          ...users
-            .filter((u) => u.id !== user.id)
-            .map((u) => ({
-              text: u.name,
-              handler: () => switchUser(u),
-            })),
-          { text: "Cancel", role: "cancel" as const },
-        ]}
-      />
     </IonTabs>
   );
 };

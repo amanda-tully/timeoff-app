@@ -128,14 +128,14 @@ Friday 16:00-16:45 <br>
 ## UI changes to make
 Friday 16:45-17:30 <br>
 I want to update the UI so it looks a bit better, the changes I want to make: <br>
-[x] Change colors
-[x] Replace header shadow with lighter shadow
-[x] Change titles in navigation, Request, Response, Switch User
-[x] Change icons in navigation
-[x] Add empty list text to list component
-[x] Add title to list
-[x] Update form UI
-[x] Remove text from header
+[x] Change colors <br>
+[x] Replace header shadow with lighter shadow <br>
+[x] Change titles in navigation, Request, Response, Switch User <br>
+[x] Change icons in navigation <br>
+[x] Add empty list text to list component <br>
+[x] Add title to list <br>
+[x] Update form UI <br>
+[x] Remove text from header <br>
 [x] Add avatar to header
 
 
@@ -155,8 +155,8 @@ Added project to vercel, so I can check everything on my own phone.
 Saturday 10:30-12:00 <br>
 Worked on the unit tests some more. Found a better way to handle the buttons. Added Pagination unit test. Made some UI updates. 
 Worked some more on the Pagination.
-[x] Update list UI
-[x] Remove request once approved or rejected and add it to history list for supervisor
+[x] Update list UI <br>
+[x] Remove request once approved or rejected and add it to history list for supervisor <br>
 [x] Move switching user to header
 
 
@@ -202,9 +202,9 @@ The supervisor page was getting a bit bloated so I moved code to components.
 [x] Add some sort of visual to indicate current status of request
 
 ## Testing
-[x] Check phone
-[x] Check iPad
-[x] Check storybook 
+[x] Check phone <br>
+[x] Check iPad <br>
+[x] Check storybook  <br>
 [x] Make sure all the tests are passing
 
 

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { TimeOffAPI, TimeOffRequest, TimeOffType } from "../api/timeoff";
 
-export function useEmployeeRequests(employeeId: string) {
+export function useEmployeeRequests(employeeId: string, employeeName: string) {
   const [requests, setRequests] = useState<TimeOffRequest[]>([]);
 
   const load = useCallback(() => {
@@ -22,7 +22,7 @@ export function useEmployeeRequests(employeeId: string) {
     }) => {
       // normalize type
       const type = input.type.toLowerCase() as TimeOffType;
-      TimeOffAPI.createRequest(employeeId, {
+      TimeOffAPI.createRequest(employeeId, employeeName, {
         startDate: input.startDate,
         endDate: input.endDate,
         type,
@@ -30,7 +30,7 @@ export function useEmployeeRequests(employeeId: string) {
       });
       load();
     },
-    [employeeId, load],
+    [employeeId, employeeName, load],
   );
 
   return { requests, reload: load, create };

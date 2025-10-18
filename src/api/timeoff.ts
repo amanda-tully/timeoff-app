@@ -6,6 +6,7 @@ export type TimeOffStatus = "pending" | "approved" | "rejected";
 export interface TimeOffRequest {
   id: string; // uuid-like
   employeeId: string;
+  employeeName: string;
   startDate: string; // YYYY-MM-DD
   endDate: string; // YYYY-MM-DD
   type: TimeOffType;
@@ -50,12 +51,17 @@ export interface CreateRequestInput {
 
 export const TimeOffAPI = {
   // Create a new request for an employee
-  createRequest(employeeId: string, input: CreateRequestInput): TimeOffRequest {
+  createRequest(
+    employeeId: string,
+    employeeName: string,
+    input: CreateRequestInput,
+  ): TimeOffRequest {
     const now = new Date().toISOString();
     const all = loadAll();
     const request: TimeOffRequest = {
       id: uuid(),
       employeeId,
+      employeeName,
       startDate: input.startDate,
       endDate: input.endDate,
       type: input.type,
